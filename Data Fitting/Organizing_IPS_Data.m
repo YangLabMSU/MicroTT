@@ -1,0 +1,71 @@
+clear ; clc ; close all ;
+
+% The Goal of this Script is to Combine All of the IP-S Curves into a single dataset
+load('Stretch Experiment Data Fit - v2.mat') ;
+
+All_IPS_Data = [] ;
+for n = 1:size(StretchExperimentData,1)
+
+    if string(StretchExperimentData{n,4}) ~= "Atypical Curve"
+
+        if StretchExperimentData{n,1}(1) == "IP-S"
+
+            All_IPS_Data = [All_IPS_Data ; StretchExperimentData(n,:)] ;
+
+        end
+
+    end
+
+end
+
+load('Stretch Experiment Data Fit - Sub 6-5-24 - v2.mat') ;
+for n = 1:size(StretchExperimentData,1)
+
+    if string(StretchExperimentData{n,4}) ~= "Atypical Curve"
+
+        if StretchExperimentData{n,1}(1) == "IP-S"
+
+            All_IPS_Data = [All_IPS_Data ; StretchExperimentData(n,:)] ;
+
+        end
+
+    end
+
+end
+
+load('Stretch Experiment Data Fit - Sub 6-14.mat') ;
+for n = 1:size(StretchExperimentData,1)
+
+    if string(StretchExperimentData{n,4}) ~= "Atypical Curve"
+
+        if StretchExperimentData{n,1}(1) == "IP-S"
+
+            All_IPS_Data = [All_IPS_Data ; StretchExperimentData(n,:)] ;
+
+        end
+
+    end
+
+end
+
+Header1 = { "Details" "Stress (MPa)" "Strain" "Critical Point Indices" "Fitting Parameters" "Goodness of Fit (R^2, RMSE)" "Yield Data" } ; 
+All_IPS_Data = [Header1 ; All_IPS_Data] ; 
+
+% Make the Table
+All_IPS_Data_Table = [] ;
+for n = 2:size(All_IPS_Data,1)
+
+    All_IPS_Data_Table = [ All_IPS_Data_Table ; All_IPS_Data{n,1} ] ;
+
+end
+
+Header = ["Material" "Substrate" "Test Date"	"Test Condition"	"Array Position"	"Beam Thickness (um)"...	
+    "Beam Stiffness (N/m)"	"Writing Power (%max, 50 mW)"	"Writing Speed (mm/s)"	"Fiber Width (um)"...
+    "Fiber Height (um)"	"Slice Distance (um)"	"Hatch Distance"	"Hatch Style"	"SEM Fiber Area (um^2)"...
+    "Initial Measured Fiber Length (um)"	"Experiment Displacement (um)"	"Experiment Displacement Rate (um/s)"...
+    "Hold Duration (s)"	"Experiment Cylces"	"Recovery Observation time (s)"	"Experiment Notes"	"Total Frames"...
+    "Processed Frames"	"Data Smoothing Factor"	"Pixel to Micron Adjustment"	"Data Path"] ; 
+
+All_IPS_Data_Table = [Header ; All_IPS_Data_Table] ; 
+
+save("All_IPS_LargeStrain_Data", "All_IPS_Data_Table", "All_IPS_Data") ; 

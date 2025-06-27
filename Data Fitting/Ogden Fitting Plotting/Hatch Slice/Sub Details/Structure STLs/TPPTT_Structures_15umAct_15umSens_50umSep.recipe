@@ -1,0 +1,8 @@
+Version = 1.5
+Model.Type = Mesh
+Model.FilePath = C:\Users\Grayson Minnick\Documents\Yang Research\Two-Photon Polymerization\Nanoscribe Printing\Printing Files\5-29-24 - IP-S Array\Structure STLs\TPPTT_Structures_15umAct_15umSens_50umSep.STL
+Model.Transformation = [M11:-1 M12:0 M13:0 M14:0] [M21:0 M22:0 M23:1 M24:0] [M31:0 M32:1 M33:0 M34:0] [M41:180.8257 M42:-210.3391 M43:-22.78009 M44:1]
+Model.BoundingBox = Minimum:X:-180 Y:-155.5 Z:1.907349E-06 Maximum:X:180 Y:155.5 Z:311
+Model.Rotation = X:0 Y:0.7071068 Z:0.7071068 W:0
+Model.Scaling = X:1 Y:1 Z:1
+Model.Translation = X:180.8257 Y:-210.3391 Z:-22.78009

@@ -1,0 +1,223 @@
+% System initialization
+InvertZAxis 1
+
+% Writing configuration
+GalvoScanMode
+ContinuousMode
+PiezoSettlingTime 10
+GalvoAcceleration 2
+% StageVelocity 200 % Enable for more accurate but slower stitching
+
+% Scan field offsets
+XOffset 0
+YOffset 0
+ZOffset 0
+
+% Writing parameters
+PowerScaling 1.0
+
+% Text Positioning
+local $TextX = 0
+local $TextY = -200
+local $TextDiff = 10
+local $TextFS = 5
+
+% TPP Sensor Structure
+local $StructurePower = 60
+local $StructureSpeed = 55000
+
+% Array
+local $Rows = 8
+local $Cols = 10
+local $NumRows = 0
+local $NumCols = 0
+
+% Power
+local $BasePower = 60
+
+% Write Speed
+local $BaseSpeed = 50000
+local $HighSpeed = 70000
+local $LowSpeed = 30000
+
+% Moves
+local $XMove = 500
+local $YMove = 600
+
+for $NumCols = 1 to $Cols
+	
+	for $NumRows = 1 to $Rows
+		
+		if $NumCols == 1
+			
+			LaserPower $StructurePower
+			ScanSpeed $StructureSpeed
+			include TPPTT_Structures_15umAct_15umSens_50umSep_data.gwl
+			
+			AddZDrivePosition 293
+			GotoY 4
+			
+			LaserPower $BasePower
+			ScanSpeed 70000
+			include TPPTT_Fiber_Structure_1x2um_50umGap_data.gwl
+			
+			AddZDrivePosition -293
+			GotoY -4
+			
+		elif $NumCols == 2
+			
+			LaserPower $StructurePower
+			ScanSpeed $StructureSpeed
+			include TPPTT_Structures_15umAct_15umSens_50umSep_data.gwl
+			
+			AddZDrivePosition 293
+			GotoY 4
+			
+			LaserPower $BasePower
+			ScanSpeed 60000
+			include TPPTT_Fiber_Structure_1x2um_50umGap_data.gwl
+			
+			AddZDrivePosition -293
+			GotoY -4
+			
+		elif $NumCols == 3
+			
+			LaserPower $StructurePower
+			ScanSpeed $StructureSpeed
+			include TPPTT_Structures_15umAct_15umSens_50umSep_data.gwl
+			
+			AddZDrivePosition 293
+			GotoY 4
+			
+			LaserPower $BasePower
+			ScanSpeed $BaseSpeed
+			include TPPTT_Fiber_Structure_1x2um_50umGap_XHat_data.gwl
+			
+			AddZDrivePosition -293
+			GotoY -4
+			
+			
+		elif $NumCols == 4
+			
+			LaserPower $StructurePower
+			ScanSpeed $StructureSpeed
+			include TPPTT_Structures_15umAct_15umSens_50umSep_data.gwl
+			
+			AddZDrivePosition 293
+			GotoY 4
+			
+			LaserPower $BasePower
+			ScanSpeed $BaseSpeed
+			include TPPTT_Fiber_Structure_1x2um_50umGap_DiaHat_data.gwl
+			
+			AddZDrivePosition -293
+			GotoY -4
+			
+		elif $NumCols == 5
+			
+			LaserPower $StructurePower
+			ScanSpeed $StructureSpeed
+			include TPPTT_Structures_15umAct_15umSens_50umSep_data.gwl
+			
+			AddZDrivePosition 293
+			GotoY 4
+			
+			LaserPower $BasePower
+			ScanSpeed $BaseSpeed
+			include TPPTT_Fiber_Structure_1x2um_50umGap_data.gwl
+			
+			AddZDrivePosition -293
+			GotoY -4
+			
+		elif $NumCols == 6
+			
+			LaserPower $StructurePower
+			ScanSpeed $StructureSpeed
+			include TPPTT_Structures_15umAct_20umSens_50umSep_data.gwl
+			
+			AddZDrivePosition 293
+			GotoY 4
+			
+			LaserPower $BasePower
+			ScanSpeed $BaseSpeed
+			include TPPTT_Fiber_Structure_1x2um_50umGap_data.gwl
+			
+			AddZDrivePosition -293
+			GotoY -4
+			
+		elif $NumCols == 7
+			
+			LaserPower $StructurePower
+			ScanSpeed $StructureSpeed
+			include TPPTT_Structures_15umAct_20umSens_50umSep_data.gwl
+			
+			AddZDrivePosition 293
+			GotoY 4
+			
+			LaserPower $BasePower
+			ScanSpeed 30000
+			include TPPTT_Fiber_Structure_1x2um_50umGap_data.gwl
+			
+			AddZDrivePosition -293
+			GotoY -4
+			
+		elif $NumCols == 8
+			
+			LaserPower $StructurePower
+			ScanSpeed $StructureSpeed
+			include TPPTT_Structures_15umAct_20umSens_50umSep_data.gwl
+			
+			AddZDrivePosition 293
+			GotoY 4
+			
+			LaserPower $BasePower
+			ScanSpeed $BaseSpeed
+			include TPPTT_Fiber_Structure_1x2um_50umGap_25hat_data.gwl
+			
+			AddZDrivePosition -293
+			GotoY -4
+			
+		elif $NumCols == 9
+			
+			LaserPower $StructurePower
+			ScanSpeed $StructureSpeed
+			include TPPTT_Structures_15umAct_20umSens_50umSep_data.gwl
+			
+			AddZDrivePosition 293
+			GotoY 4
+			
+			var $solidLaserPower = $BasePower
+			var $solidScanSpeed = $BaseSpeed
+			include TPPTT_Fiber_Structure_1x2um_25hs_50umGap_data.gwl
+			
+			AddZDrivePosition -293
+			GotoY -4
+			
+			
+		elif $NumCols == 10
+			
+			LaserPower $StructurePower
+			ScanSpeed $StructureSpeed
+			include TPPTT_Structures_15umAct_20umSens_50umSep_data.gwl
+			
+			AddZDrivePosition 293
+			GotoY 4
+			
+			LaserPower $BasePower
+			ScanSpeed $BaseSpeed
+			include TPPTT_Fiber_Structure_2x2um_50umGap_data.gwl
+			
+			AddZDrivePosition -293
+			GotoY -4
+			
+			
+		end
+		
+		MoveStageY $YMove
+		
+	end
+	
+	MoveStageY -($YMove) * $Rows
+	MoveStageX $XMove
+	
+end

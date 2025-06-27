@@ -1,0 +1,164 @@
+clear ; clc ; close ;
+
+% Generating Plots for a cyclic testing figure for Paper
+
+DeepRangePath = "K:\Yang Research\Two-Photon Polymerization\Tensile Testing Data\Second Paper\Cyclic Data - v3 - Analyzed\Substrate 9-05-23_TD 10-18-23\14\Processed Data.mat" ;
+DRData = load(DeepRangePath);
+
+MidRangePath = "K:\Yang Research\Two-Photon Polymerization\Tensile Testing Data\Second Paper\Cyclic Data - v3 - Analyzed\Substrate 9-05-23_TD 10-18-23\16\Processed Data.mat" ;
+MRData = load(MidRangePath);
+
+ElasRangePath = "K:\Yang Research\Two-Photon Polymerization\Tensile Testing Data\Second Paper\Cyclic Data - v3 - Analyzed\Substrate 10-27-23_TD 11-15-23\34\Processed Data.mat" ;
+ElasData = load(ElasRangePath);
+
+path = "K:\Advancing TPP Paper - v2\Figure Folder\Figure 6 - Cyclic Testing" ; 
+
+DRTime = DRData.ProcessedData.Time ;
+DRStress = DRData.ProcessedData.Stress ;
+DRPlateStrain = DRData.ProcessedData.PlateStrain ;
+DRFiberSrain = DRData.ProcessedData.FiberStrain ;
+
+MRTime = MRData.ProcessedData.Time ;
+MRStress = MRData.ProcessedData.Stress ;
+MRPlateStrain = MRData.ProcessedData.PlateStrain ;
+MRFiberSrain = MRData.ProcessedData.FiberStrain ;
+
+ElasTime = ElasData.ProcessedData.Time ;
+ElasStress = ElasData.ProcessedData.Stress ;
+ElasPlateStrain = ElasData.ProcessedData.PlateStrain ;
+ElasFiberSrain = ElasData.ProcessedData.FiberStrain ;
+
+LargePlotSize = [ 10, 5, 10*3, 3.5*3 ] ;
+MedPlotSize = [10, 5, 5*3, 3.5*3] ; 
+
+fig1 = figure('units', 'centimeters', 'position', LargePlotSize); hold on;
+plot(DRTime, smooth(DRPlateStrain), 'linewidth', 5, 'DisplayName', "Structure"); hold on;
+plot(DRTime, smooth(DRFiberSrain), 'linewidth', 5, 'DisplayName', "Fiber");
+ylabel("Strain");
+xlabel("Time (s)") ;
+set(gca, 'FontSize', 20) ;
+ax = gca;
+ax.Box = 'on';  % Turn on the box
+set(ax, 'BoxStyle', 'full');  % Ensure the box is drawn on all sides
+ax.LineWidth = 1.5 ; % Increase the axis line width
+ax.TickLength = [0.01 0.01]; % Increase the length of the tick marks
+grid on ;
+xlim([0 650]) ;
+xticks(linspace(0,650,6)) ;
+ylim([-.2 0.8]) ;
+yticks(linspace(-0.2, 0.8, 6)) ;
+
+fileName1 = 'LargeRange_Strain_v1';
+filename1 = fullfile(path,fileName1);  % Set your desired file name
+print(filename1, '-djpeg', '-r300');  % Save as JPEG with 300 dpi resolution
+
+fig2 = figure('units', 'centimeters', 'position', LargePlotSize); hold on;
+plot(MRTime, smooth(MRPlateStrain), 'linewidth', 5, 'DisplayName', "Structure"); hold on;
+plot(MRTime, smooth(MRFiberSrain), 'linewidth', 5, 'DisplayName', "Fiber");
+ylabel("Strain");
+xlabel("Time (s)") ;
+set(gca, 'FontSize', 20) ;
+ax = gca;
+ax.Box = 'on';  % Turn on the box
+set(ax, 'BoxStyle', 'full');  % Ensure the box is drawn on all sides
+ax.LineWidth = 1.5 ; % Increase the axis line width
+ax.TickLength = [0.01 0.01]; % Increase the length of the tick marks
+grid on ;
+xlim([0 480]) ;
+xticks(linspace(0,480,6)) ;
+ylim([-0.1 0.4]) ;
+yticks(linspace(-0.1, 0.4, 6)) ;
+
+fileName2 = 'MidRange_Strain_v1';
+filename2 = fullfile(path,fileName2);  % Set your desired file name
+print(filename2, '-djpeg', '-r300');  % Save as JPEG with 300 dpi resolution
+
+fig3 = figure('units', 'centimeters', 'position', LargePlotSize); hold on;
+plot(ElasTime, smooth(ElasPlateStrain), 'linewidth', 5, 'DisplayName', "Structure"); hold on;
+plot(ElasTime, smooth(ElasFiberSrain), 'linewidth', 3, 'DisplayName', "Fiber");
+ylabel("Strain");
+xlabel("Time (s)") ;
+set(gca, 'FontSize', 20) ;
+ax = gca;
+ax.Box = 'on';  % Turn on the box
+set(ax, 'BoxStyle', 'full');  % Ensure the box is drawn on all sides
+ax.LineWidth = 1.5 ; % Increase the axis line width
+ax.TickLength = [0.01 0.01]; % Increase the length of the tick marks
+grid on ;
+% xlim([0 190]) ;
+% xticks(linspace(0,190,6)) ;
+xlim([0 192]) ;
+xticks(linspace(0,192,6)) ;
+ylim([-0.002 0.016]) ;
+yticks(linspace(0, 0.016, 5)) ;
+
+fileName3 = 'ElasRange_Strain_v1';
+filename3 = fullfile(path,fileName3);  % Set your desired file name
+print(filename3, '-djpeg', '-r300');  % Save as JPEG with 300 dpi resolution
+
+fig4 = figure('units', 'centimeters', 'position', MedPlotSize); hold on;
+plot(smooth(DRPlateStrain), DRStress, 'linewidth', 5, 'DisplayName', "Structure"); hold on;
+plot(smooth(DRFiberSrain), DRStress, 'linewidth', 5, 'DisplayName', "Fiber");
+ylabel("Stress (MPa)");
+xlabel("Strain") ;
+set(gca, 'FontSize', 20) ;
+ax = gca;
+ax.Box = 'on';  % Turn on the box
+set(ax, 'BoxStyle', 'full');  % Ensure the box is drawn on all sides
+ax.LineWidth = 1.5 ; % Increase the axis line width
+ax.TickLength = [0.01 0.01]; % Increase the length of the tick marks
+grid on ;
+% xlim([0 650]) ;
+% xticks(linspace(0,650,6)) ;
+% ylim([-.2 0.8]) ;
+% yticks(linspace(-0.2, 0.8, 6)) ;
+
+fileName4 = 'LargeRange_StressStrain_v1';
+filename4 = fullfile(path,fileName4);  % Set your desired file name
+print(filename4, '-djpeg', '-r300');  % Save as JPEG with 300 dpi resolution
+
+fig5 = figure('units', 'centimeters', 'position', MedPlotSize); hold on;
+plot(smooth(MRPlateStrain), MRStress, 'linewidth', 5, 'DisplayName', "Structure"); hold on;
+plot(smooth(MRFiberSrain), MRStress, 'linewidth', 5, 'DisplayName', "Fiber");
+ylabel("Stress (MPa)");
+xlabel("Strain") ;
+set(gca, 'FontSize', 20) ;
+ax = gca;
+ax.Box = 'on';  % Turn on the box
+set(ax, 'BoxStyle', 'full');  % Ensure the box is drawn on all sides
+ax.LineWidth = 1.5 ; % Increase the axis line width
+ax.TickLength = [0.01 0.01]; % Increase the length of the tick marks
+grid on ;
+% xlim([0 480]) ;
+% xticks(linspace(0,480,6)) ;
+% ylim([-0.1 0.4]) ;
+% yticks(linspace(-0.1, 0.4, 6)) ;
+
+fileName5 = 'MidRange_StressStrain_v1';
+filename5 = fullfile(path,fileName5);  % Set your desired file name
+print(filename5, '-djpeg', '-r300');  % Save as JPEG with 300 dpi resolution
+
+fig6 = figure('units', 'centimeters', 'position', MedPlotSize); hold on;
+plot(smooth(ElasPlateStrain), ElasStress, 'linewidth', 5, 'DisplayName', "Structure"); hold on;
+plot(smooth(ElasFiberSrain), ElasStress, 'linewidth', 3, 'DisplayName', "Fiber");
+ylabel("Stress (MPa)");
+xlabel("Strain") ;
+set(gca, 'FontSize', 20) ;
+ax = gca;
+ax.Box = 'on';  % Turn on the box
+set(ax, 'BoxStyle', 'full');  % Ensure the box is drawn on all sides
+ax.LineWidth = 1.5 ; % Increase the axis line width
+ax.TickLength = [0.01 0.01]; % Increase the length of the tick marks
+grid on ;
+% xlim([0 192]) ;
+% xticks(linspace(0,192,6)) ;
+% ylim([-0.002 0.016]) ;
+% yticks(linspace(0, 0.016, 5)) ;
+
+fileName6 = 'ElasRange_StressStrain_v1';
+filename6 = fullfile(path,fileName6);  % Set your desired file name
+print(filename6, '-djpeg', '-r300');  % Save as JPEG with 300 dpi resolution
+
+
+
+
